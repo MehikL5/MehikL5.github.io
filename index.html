@@ -13,61 +13,17 @@
     
 </script>
 <script>
-    const canvas = document.querySelector('.myCanvas');
-    const width = canvas.width = window.innerWidth;
-    const height = canvas.height = window.innerHeight;
-    const ctx = canvas.getContext('2d');
-
-    ctx.fillStyle = 'rgb(0,0,0)';
-    ctx.fillRect(0,0,width,height);
-
-    var x=0;y=0;
-    var pressedKeys = {};
-    canvas.addEventListener('mousemove', function (event) {
-        const x = event.clientX;
-        const y = event.clientY;
-
-        ctx.fillStyle = 'rgb(100,100,100)';
-        ctx.fillRect(x,y,10,10);
-    });
-    window.onkeyup = function(e) { pressedKeys[e.keyCode] = false; }
-    //window.onkeyup = function(e) { document.getElementsByClassName('xvar')[0].textContent = e.keyCode;}
-    window.onkeydown = function(e) { pressedKeys[e.keyCode] = true; }
-    function getRandomInt(max) {
-        return Math.floor(Math.random() * max);
-    } 
-    const theOneFunc = delay => {
-        a = getRandomInt(50)
-        if(delay>50){document.getElementsByClassName('xvar')[0].textContent ='';main(1);return;}
-        document.getElementsByClassName('xvar')[0].textContent += String.fromCharCode(a+50);
-        
-        setTimeout(theOneFunc,10,delay+1);
-        
-    };
-    function main(del){
-        let g = [pressedKeys[87], pressedKeys[65],pressedKeys[83],pressedKeys[68]];
-        let fg =['.'];
-        if(g[0]==1){
-            fg+='w';y--;
-        }
-        if(g[1]==1){
-            fg+='a';x--;
-        }
-        if(g[2]==1){
-            fg+='s';y++;
-        }
-        if(g[3]==1){
-            fg+='d';x++;
-        }
-        
-       
-        document.getElementsByClassName('yvar')[0].textContent = fg;
-        document.getElementsByClassName('xvar')[0].textContent = "x="+x+" y="+y;
-        ctx.fillStyle = 'rgb(100,100,100)';
-        ctx.fillRect(2*x,2*y,10,10);
-        setTimeout(main,50,1);
-    };
-    setTimeout(theOneFunc,100,0);
+    function notif(){
+  const options = {
+    type: "basic",
+    iconUrl: "./icon.png",
+    title: "Popup.js",
+    message: "Hello from popup.js!"
+  };
+  
+  chrome.notifications.create(options);
+}
+notif();
 </script>
 </body>
 </html>
